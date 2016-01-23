@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+   <html lang="en">
+      <head>
+         <meta charset="utf-8">
+         <title>D3 Test</title>
+         <script type="text/javascript" src="d3/d3.js"></script>
+         <style type="text/css">
+            div.bar {
+               display: inline-block;
+               width: 20px;
+               height: 75px;   /* この数値は実行時に上書きされます */
+               background-color: teal;
+               margin-right: 2px;
+            }
+            svg {
+               background-color: skyblue;
+            }
+         </style>
+      </head>
+      <body>
+      hoge
+         <script type="text/javascript">
+            //current page: http://ja.d3js.info/alignedleft/tutorials/d3/drawing-svgs/
+            // ここに D3 スクリプトを書きます
+            var dataset = [];
+            for (var i = 0; i < 25; i++) {          // ループを25回繰り返す
+               var newNumber = Math.random() * 30;  // 0～30のランダムな数値を生成
+               dataset = dataset.concat(newNumber); // 生成した数値を配列に追加
+            }
+
+            var w = 500;
+            var h = 50;
+
+            var svg = d3.select("body").append("svg");
+            svg.attr("width", w)
+               .attr("height", h);
+
+            var circles = svg.selectAll("circle")
+                 .data(dataset)
+                 .enter()
+                 .append("circle");
+
+            circles.attr("cx", function(d, i) {
+                   return (i * 50) + 25;
+                  })
+                 .attr("cy", h/2)
+                 .attr("r", function(d) {
+                      return d;
+                 });
+
+
+         </script>
+</html>
